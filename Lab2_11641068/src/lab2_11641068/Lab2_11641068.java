@@ -27,7 +27,7 @@ public class Lab2_11641068 {
 		usuarios t = new usuarios();
 		while (!p.equals("f")) {
 			p = JOptionPane.showInputDialog("Menu\n "
-					+ "A - Agregar Usuario y edad y Lugar de Nacimiento\n"
+					+ "A - Agregar Nombre y edad y Lugar de Nacimiento, Usuario, Contraseña\n"
 					+ "B - Lista de usuarios\n"
 					+ "C - Modifica usuario \n"
 					+ "D - eliminar usuario\n"
@@ -43,7 +43,6 @@ public class Lab2_11641068 {
 				nombre = JOptionPane.showInputDialog("Nombre");
 				edad = Integer.parseInt(JOptionPane.showInputDialog("Edad"));
 				lnd = JOptionPane.showInputDialog("Lugar De Nacimiento");
-
 				usuario = JOptionPane.showInputDialog("Usuario");
 				contra = JOptionPane.showInputDialog("Contraseña");
 				t.setNombre(nombre);
@@ -57,7 +56,8 @@ public class Lab2_11641068 {
 				String ver = "";
 				for (usuarios ob : lista) {
 					if (ob instanceof usuarios) {
-						ver += "Posicion " + lista.indexOf(ob) + " Nombre:  " + ob.getNombre() + " Edad: " + ob.getEdad() + " Lugar de Nacimiento: " + ob.getLugarDeNacimiento() + "\n";
+						ver += "\n Posicion" + lista.indexOf(ob) + "\nNombre:" + ob.getNombre() + "\nEdad: " + ob.getEdad() + "\nLugar de Nacimiento: " + 
+								ob.getLugarDeNacimiento() + "\nUsuario: " + ob.getUsername() + "\nContraseña: " + ob.getPassword();
 					}
 				}
 				JOptionPane.showMessageDialog(null, ver);
@@ -74,7 +74,7 @@ public class Lab2_11641068 {
 						+ "2) Edad\n"
 						+ "3) Lugar de nacimiento\n"
 						+ "4) Username \n"
-						+ "5) Password "));
+						+ "5) Password \n"));
 				switch (opcion) {
 					case 1:
 						pos = Integer.parseInt(JOptionPane.showInputDialog("Eliga la posicion que quiere modificar"));
@@ -107,6 +107,7 @@ public class Lab2_11641068 {
 				int eliminar;
 				eliminar = Integer.parseInt(JOptionPane.showInputDialog("Ingrese la posicion a eliminar"));
 				lista.remove(eliminar);
+				
 			}
 			if (p.equals("e")) {
 				final JPanel panel = new JPanel();

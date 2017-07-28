@@ -7,6 +7,7 @@ package lab2_11641068;
 
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 
 /**
  *
@@ -17,17 +18,21 @@ public class Lab2_11641068 {
 	/**
 	 * @param args the command line arguments
 	 */
+	static String usuario = " ";
+	static String contra = " ";
+
 	public static void main(String[] args) {
 		ArrayList<usuarios> lista = new ArrayList();
 		String p = " ";
 		usuarios t = new usuarios();
-		while (!p.equals("d")) {
+		while (!p.equals("f")) {
 			p = JOptionPane.showInputDialog("Menu\n "
 					+ "A - Agregar Usuario y edad y Lugar de Nacimiento\n"
 					+ "B - Lista de usuarios\n"
 					+ "C - Modifica usuario \n"
 					+ "D - eliminar usuario\n"
-					+ "d - Salir");
+					+ "E - Login\n "
+					+ "f - Salir");
 			if (p.equals("a")) {
 				t = new usuarios();
 				String nombre = " ";
@@ -35,15 +40,16 @@ public class Lab2_11641068 {
 				String lnd = " ";
 				String username = " ";
 				String contra = " ";
-				nombre = JOptionPane.showInputDialog("Nombre de usuario");
+				nombre = JOptionPane.showInputDialog("Nombre");
 				edad = Integer.parseInt(JOptionPane.showInputDialog("Edad"));
 				lnd = JOptionPane.showInputDialog("Lugar De Nacimiento");
-				username = JOptionPane.showInputDialog("Usuario");
+
+				usuario = JOptionPane.showInputDialog("Usuario");
 				contra = JOptionPane.showInputDialog("Contraseña");
 				t.setNombre(nombre);
 				t.setEdad(edad);
 				t.setLugarDeNacimiento(lnd);
-				t.setUsername(username);
+				t.setUsername(usuario);
 				t.setPassword(contra);
 				lista.add(t);
 			}
@@ -51,7 +57,7 @@ public class Lab2_11641068 {
 				String ver = "";
 				for (usuarios ob : lista) {
 					if (ob instanceof usuarios) {
-						ver += " " + lista.indexOf(ob) + "Nombre:  " + ob.getNombre() + "Edad: " + ob.getEdad() + "Lugar de Nacimiento: " + ob.getLugarDeNacimiento() + "\n";
+						ver += "Posicion " + lista.indexOf(ob) + " Nombre:  " + ob.getNombre() + " Edad: " + ob.getEdad() + " Lugar de Nacimiento: " + ob.getLugarDeNacimiento() + "\n";
 					}
 				}
 				JOptionPane.showMessageDialog(null, ver);
@@ -63,8 +69,6 @@ public class Lab2_11641068 {
 				int edad;
 				String m = "";
 				String lugar = " ";
-				String usuario = " ";
-				String contra = " ";
 				opcion = Integer.parseInt(JOptionPane.showInputDialog("Que quiere modificar\n"
 						+ "1) Nombre\n"
 						+ "2) Edad\n"
@@ -97,6 +101,24 @@ public class Lab2_11641068 {
 						contra = JOptionPane.showInputDialog("Modifique Username ");
 						lista.get(pos).setPassword(contra);
 						break;
+				}
+			}
+			if (p.equals("d")) {
+				int eliminar;
+				eliminar = Integer.parseInt(JOptionPane.showInputDialog("Ingrese la posicion a eliminar"));
+				lista.remove(eliminar);
+			}
+			if (p.equals("e")) {
+				final JPanel panel = new JPanel();
+				usuario = JOptionPane.showInputDialog("Ingrese el usuario");
+				contra = JOptionPane.showInputDialog("Ingrese la contraseña");
+				for (int i = 0; i < lista.size(); i++) {
+					if (lista.get(i).getUsername().contains(usuario) && lista.get(i).getPassword().contains(contra)) {
+						JOptionPane.showMessageDialog(null, "Bienvenido" + usuario);
+						break;
+					} else {
+						JOptionPane.showMessageDialog(panel, "Error con el usuario o contraseña");
+					}
 				}
 			}
 		}

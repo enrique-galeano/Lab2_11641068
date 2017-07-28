@@ -5,7 +5,9 @@
  */
 package lab2_11641068;
 
+import java.awt.Dialog;
 import java.util.ArrayList;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
@@ -45,6 +47,7 @@ public class Lab2_11641068 {
 				lnd = JOptionPane.showInputDialog("Lugar De Nacimiento");
 				usuario = JOptionPane.showInputDialog("Usuario");
 				contra = JOptionPane.showInputDialog("Contraseña");
+				//DefaultComboBoxModel model = (DefaultComboBoxModel) combo.getModel();
 				t.setNombre(nombre);
 				t.setEdad(edad);
 				t.setLugarDeNacimiento(lnd);
@@ -56,8 +59,8 @@ public class Lab2_11641068 {
 				String ver = "";
 				for (usuarios ob : lista) {
 					if (ob instanceof usuarios) {
-						ver += "\n Posicion" + lista.indexOf(ob) + "\nNombre:" + ob.getNombre() + "\nEdad: " + ob.getEdad() + "\nLugar de Nacimiento: " + 
-								ob.getLugarDeNacimiento() + "\nUsuario: " + ob.getUsername() + "\nContraseña: " + ob.getPassword();
+						ver += "\n Posicion: " + lista.indexOf(ob) + "\nNombre:" + ob.getNombre() + "\nEdad: " + ob.getEdad() + "\nLugar de Nacimiento: "
+								+ ob.getLugarDeNacimiento() + "\nUsuario: " + ob.getUsername() + "\nContraseña: " + ob.getPassword();
 					}
 				}
 				JOptionPane.showMessageDialog(null, ver);
@@ -107,18 +110,26 @@ public class Lab2_11641068 {
 				int eliminar;
 				eliminar = Integer.parseInt(JOptionPane.showInputDialog("Ingrese la posicion a eliminar"));
 				lista.remove(eliminar);
-				
+
 			}
 			if (p.equals("e")) {
+				General gene = new General();
+				int a = 0;
 				final JPanel panel = new JPanel();
 				usuario = JOptionPane.showInputDialog("Ingrese el usuario");
 				contra = JOptionPane.showInputDialog("Ingrese la contraseña");
 				for (int i = 0; i < lista.size(); i++) {
 					if (lista.get(i).getUsername().contains(usuario) && lista.get(i).getPassword().contains(contra)) {
-						JOptionPane.showMessageDialog(null, "Bienvenido" + usuario);
+						a = 1;
+						gene.setAlwaysOnTop(true);
+						gene.setModalExclusionType(Dialog.ModalExclusionType.APPLICATION_EXCLUDE);
+						gene.setLocationByPlatform(true);
+						gene.pack();
+						gene.setVisible(true);
 						break;
-					} else {
-						JOptionPane.showMessageDialog(panel, "Error con el usuario o contraseña");
+					}
+					if (lista.size() == i - 1 && a == 0) {
+						JOptionPane.showMessageDialog(panel, "Usuario incorrecto");
 					}
 				}
 			}
